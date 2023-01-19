@@ -31,7 +31,7 @@
 }
 @keyframes appear {
   to {
-    transform: matrix3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
     opacity: 1;
   }
 }
@@ -107,14 +107,14 @@ body {
   top: calc(var(--border-radius) * 3);
 }
 
-.buttons .right.button {
+.buttons .right .button {
   height: 9.5em;
 }
 
 .buttons .button {
   background: hsl(var(--c-h), 20%, 95%);
   height: 6em;
-  box-shadow: inset -0.15em 0 0.1em black, inset 0 0 0.1em hsl(var(--c-h), 30%, 90%), inset 0 0 0.2em 0.1em hsl(var(--c-h), 30%, 90%), inset 0 -0.2em 0.1em hsl(var(--c-h), 30%, 90%), inset -0.1em 0.333em 0.1em rgba(0, 0, 0, 0.5), inset -0.1em -0.333em 0.1em rgba(0, 0, 0, 0.5);
+  box-shadow: inset -0.15em 0 0.1em black, inset 0 0 0.1em hsl(var(--c-h), 30%, 90%), inset 0 0.2em 0.1em hsl(var(--c-h), 30%, 90%), inset 0 -0.2em 0.1em hsl(var(--c-h), 30%, 90%), inset -0.1em 0.333em 0.1em rgba(0, 0, 0, 0.5), inset -0.1em -0.333em 0.1em rgba(0, 0, 0, 0.5);
   border-top-left-radius: 0.2em;
   border-bottom-left-radius: 0.2em;
 }
@@ -190,9 +190,8 @@ body {
   border: var(--border-width) solid rgba(255, 255, 255, 0.8);
   border-radius: inherit;
   filter: blur(0.05em);
-  -webkit-mas-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%);
   -webkit-mask-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%);
-          mask-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%);
+  mask-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%);
 }
 
 .bg .section .glow {
@@ -201,7 +200,7 @@ body {
   border-radius: inherit;
   mix-blend-mode: overlay;
   z-index: 1;
-  background: radial-gradient(80% 150% at 50% 100% hsl(var(--g-h), 100%, var(--g-l)), transparent 70%);
+  background: radial-gradient(80% 150% at 50% 100%, hsl(var(--g-h), 100%, var(--g-l)), transparent 70%);
 }
 
 .bg .section:last-of-type {
@@ -306,6 +305,7 @@ body {
   border-radius: var(--notch-radius);
   pointer-events: all;
   overflow: hidden;
+  color: white;
   display: flex;
   cursor: pointer;
   width: 100%;
@@ -326,7 +326,8 @@ body {
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: stretch;
-  padding: var(--content-gap);
+  padding: var(--content-padding);
+  gap: var(--content-gap);
   font-size: 125%;
   transition-property: padding;
   will-change: padding;
@@ -369,14 +370,14 @@ body {
 }
 
 .content .text:before {
-  content: "Created By...";
+  content: "iPhone 14 Dynamic Island";
   order: 1;
   text-transform: uppercase;
 }
 
 .content .text:after {
   order: 2;
-  content: "Rei";
+  content: "Reinaldo Pared";
   opacity: 0.5;
 }
 
@@ -400,6 +401,16 @@ body {
   background: radial-gradient(50% 50% at 55% 40%, #131386, #cd1385 75%, transparent) center/133.3% 133.3%;
   background-color: yellow;
   filter: blur(0.05em);
+}
+
+.content .bar {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  flex-basis: 100%;
+  max-height: var(--bar-height, 0%);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: var(--bar-opacity, 0);
 }
 
 .content .bar .duration {
@@ -519,4 +530,136 @@ input[type=radio] {
 
 .swatch[for=deep-purple]:before {
   opacity: 0.5;
+}
+
+.swatch[for=gold] {
+  --swatch-s1: hsl(var(--gold), 100%, 50%);
+  --swatch-s2: hsl(var(--gold), 100%, 50%);
+}
+
+.swatch[for=space-black] {
+  --swatch-s1: hsl(var(--space-black), 50%, 20%);
+  --swatch-s2: hsl(var(--space-black), 50%, 10%);
+}
+
+.swatch[for=space-black]:before {
+  opacity: 0.5;
+}
+
+.swatch[for=silver] {
+  --swatch-s1: hsl(var(--silver), 50%, 80%);
+  --swatch-s2: hsl(var(--silver), 50%, 10%);
+}
+
+.swatch[for=silver]:before {
+  opacity: 0.75;
+}
+
+.deep-purple {
+  --c-h: var(--deep-purple);
+  --g-hue-adjust: 60;
+}
+
+.gold {
+  --c-h: var(--gold);
+  --g-hue-adjust-2: -100;
+}
+
+.space-black {
+  --c-h: var(--space-black);
+  --g-hue-adjust: 190;
+  --g-hue-adjust-2: 145;
+  --g-lightness: 95%;
+}
+
+.silver {
+  --c-h: var(--silver);
+  --c-s: 10%;
+  --g-hue-adjust: 30;
+  --g-lightness: 95%;
+}
+
+.silver .glow {
+  opacity: 0.25;
+}
+
+#deep-purple:checked ~ .phone .bg .deep-purple {
+  opacity: 1;
+  z-index: 1;
+  transition-delay: 0s;
+}
+
+#deep-purple:checked ~ .phone .bg .deep-purple .section::before {
+  transition-delay: 0s;
+  animation: test 1s infinite alternate-reverse;
+}
+
+#deep-purple:checked ~ .pallette label[for=deep-purple] {
+  border-color: hsl(var(--deep-purple), 50%, 75%);
+}
+
+#gold:checked ~ .phone .bg .gold {
+  opacity: 1;
+  z-index: 1;
+  transition-delay: 0s;
+}
+
+#gold:checked ~ .phone .bg .gold .section::before {
+  transition-delay: 0s;
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  animation: test 1s infinite alternate-reverse;
+}
+
+#gold:checked ~ .pallette label[for=gold] {
+  border-color: hsl(var(--gold), 50%, 75%);
+}
+
+#space-black:checked ~ .phone .bg .space-black {
+  opacity: 1;
+  z-index: 1;
+  transition-delay: 0s;
+}
+
+#space-black:checked ~ .phone .bg .space-black .section::before {
+  transition-delay: 0s;
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  animation: test 1s infinite alternate-reverse;
+}
+
+#space-black:checked ~ .pallette label[for=space-black] {
+  border-color: hsl(var(--space-black), 50%, 75%);
+}
+
+#silver:checked ~ .phone .bg .silver {
+  opacity: 1;
+  z-index: 1;
+  transition-delay: 0s;
+}
+
+#silver:checked ~ .phone .bg .silver .section::before {
+  transition-delay: 0s;
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  animation: test 1s infinite alternate-reverse;
+}
+
+#silver:checked ~ .pallette label[for=silver] {
+  border-color: hsl(var(--silver), 50%, 75%);
+}
+
+@-webkit-keyframes test {
+  from {
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale3d(2, 2, 2) translate3d(50px, 50px, 50px);
+  }
+}
+
+@keyframes test {
+  from {
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale3d(2, 2, 2) translate3d(50px, 50px, 50px);
+  }
 }/*# sourceMappingURL=style.css.map */
