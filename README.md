@@ -8,4 +8,4 @@ To use this code, you would need to include the provided HTML code in an HTML fi
 
 The result will be a visually appealing representation of the iPhone 14 Dynamic Island, with the ability to switch between different color themes using the color palette.
 
-You can view the live demonstration of the iPhone 14 Dynamic Island [here](https://reipared.github.io/practice_iphone_14_dynamic_island/).
+You can view the live demonstration of the iPhone 14 Dynamic Island [here](https://dynamic-island.reipared.com/).
